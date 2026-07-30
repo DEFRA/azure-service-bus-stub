@@ -1,0 +1,138 @@
+version: 2
+
+updates:
+  # Update npm packages
+  - package-ecosystem: npm
+    directory: /
+    open-pull-requests-limit: 10
+
+    # Group packages into shared PRs
+    groups:
+      aws-sdk:
+        patterns:
+          - '@aws-sdk/*'
+          - 'aws*'
+
+      core:
+        patterns:
+          - '@defra/*'
+          - '@hapi/*'
+          - 'croner'
+          - 'hapi*'
+          - 'joi'
+          - 'sqs-consumer'
+
+      build:
+        patterns:
+          - '@babel/*'
+          - 'autoprefixer'
+
+      lint:
+        patterns:
+          - 'eslint'
+          - 'eslint-*'
+          - 'neostandard'
+          - 'prettier'
+          - 'stylelint'
+          - 'stylelint-*'
+
+      logging:
+        patterns:
+          - '*-pino'
+          - '*-pino-format'
+          - 'pino'
+          - 'pino-*'
+          - '@elastic/*'
+
+      testing:
+        patterns:
+          - '@pact-foundation/*'
+          - 'vitest'
+          - 'vitest-*'
+          - '@vitest/*'
+          - 'vitest-fetch-mock'
+
+      tools:
+        patterns:
+          - 'convict'
+          - 'convict*'
+          - 'husky'
+          - 'nodemon'
+          - 'npm-run-all'
+          - 'proxy-chain'
+
+      types:
+        patterns:
+          - '@types/*'
+
+    ignore:
+      - dependency-name: 'eslint'
+        versions: [">=10"]
+      - dependency-name: "@types/node"
+        versions: [">=25"] # Use Node LTS
+
+    # Schedule run every Monday, local time
+    schedule:
+      interval: weekly
+      day: monday
+      time: '10:30'
+      timezone: 'Europe/London'
+
+    cooldown:
+      default-days: 7
+
+    versioning-strategy: increase
+
+    allow:
+      # Include direct package.json updates
+      - dependency-type: direct
+
+  # Update docker packages
+  - package-ecosystem: docker
+    directory: /
+
+    ignore:
+      - dependency-name: "node"
+        versions: [">=25"] # Use Node LTS
+
+    # Schedule run every Monday, local time
+    schedule:
+      interval: weekly
+      day: monday
+      time: '10:30'
+      timezone: 'Europe/London'
+
+    cooldown:
+      default-days: 7
+
+  # Update docker-compose packages
+  - package-ecosystem: docker-compose
+    directory: /
+
+    ignore:
+      - dependency-name: "node"
+        versions: [">=25"] # Use Node LTS
+
+    # Schedule run every Monday, local time
+    schedule:
+      interval: weekly
+      day: monday
+      time: '10:30'
+      timezone: 'Europe/London'
+
+    cooldown:
+      default-days: 7
+
+  # Update GitHub Actions
+  - package-ecosystem: github-actions
+    directory: /
+
+    # Schedule run every Monday, local time
+    schedule:
+      interval: weekly
+      day: monday
+      time: '10:30'
+      timezone: 'Europe/London'
+
+    cooldown:
+      default-days: 7
