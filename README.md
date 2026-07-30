@@ -132,7 +132,7 @@ proxy dispatcher:
 To add the dispatcher to your own client:
 
 ```javascript
-import { ProxyAgent } from 'undici'
+import { ProxyAgent } from 'undici';
 
 return await fetch(url, {
   dispatcher: new ProxyAgent({
@@ -140,7 +140,7 @@ return await fetch(url, {
     keepAliveTimeout: 10,
     keepAliveMaxTimeout: 10
   })
-})
+});
 ```
 
 ## Docker

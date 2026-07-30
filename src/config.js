@@ -1,10 +1,10 @@
-import convict from 'convict'
-import convictFormatWithValidator from 'convict-format-with-validator'
+import convict from 'convict';
+import convictFormatWithValidator from 'convict-format-with-validator';
 
-convict.addFormats(convictFormatWithValidator)
+convict.addFormats(convictFormatWithValidator);
 
-const isProduction = process.env.NODE_ENV === 'production'
-const isTest = process.env.NODE_ENV === 'test'
+const isProduction = process.env.NODE_ENV === 'production';
+const isTest = process.env.NODE_ENV === 'test';
 
 export const config = convict({
   serviceVersion: {
@@ -88,6 +88,6 @@ export const config = convict({
       env: 'TRACING_HEADER'
     }
   }
-})
+});
 
-config.validate({ allowed: 'strict' })
+config.validate({ allowed: 'strict' });

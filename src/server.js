@@ -1,16 +1,16 @@
-import Hapi from '@hapi/hapi'
-import { secureContext } from '@defra/hapi-secure-context'
-import { config } from '#/config.js'
-import { router } from '#/plugins/router.js'
-import { requestLogger } from '#/plugins/request-logger.js'
-import { failAction } from '#/common/helpers/fail-action.js'
-import { pulse } from '#/plugins/pulse.js'
-import { requestTracing } from '#/plugins/request-tracing.js'
-import { setupProxy } from '#/common/helpers/proxy/setup-proxy.js'
-import { metrics } from '@defra/cdp-metrics'
+import Hapi from '@hapi/hapi';
+import { secureContext } from '@defra/hapi-secure-context';
+import { config } from '#/config.js';
+import { router } from '#/plugins/router.js';
+import { requestLogger } from '#/plugins/request-logger.js';
+import { failAction } from '#/common/helpers/fail-action.js';
+import { pulse } from '#/plugins/pulse.js';
+import { requestTracing } from '#/plugins/request-tracing.js';
+import { setupProxy } from '#/common/helpers/proxy/setup-proxy.js';
+import { metrics } from '@defra/cdp-metrics';
 
 export async function createServer() {
-  setupProxy()
+  setupProxy();
   const server = Hapi.server({
     host: config.get('host'),
     port: config.get('port'),
@@ -35,7 +35,7 @@ export async function createServer() {
     router: {
       stripTrailingSlash: true
     }
-  })
+  });
 
   // Hapi Plugins:
   // requestLogger  - automatically logs incoming requests
@@ -50,7 +50,7 @@ export async function createServer() {
     secureContext,
     pulse,
     router
-  ])
+  ]);
 
-  return server
+  return server;
 }
