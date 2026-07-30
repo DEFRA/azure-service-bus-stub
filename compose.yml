@@ -23,7 +23,7 @@ services:
 
   ################################################################################
 
-  cdp-node-backend-no-db-template:
+  azure-service-bus-stub:
     build:
       context: .
       target: development
