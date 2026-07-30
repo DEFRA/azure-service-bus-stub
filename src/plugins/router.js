@@ -4,7 +4,7 @@ import { example } from '#/routes/example.js'
 export const router = {
   plugin: {
     name: 'router',
-    register: (server, _options) => {
+    register: (server) => {
       server.route([health].concat(example))
     }
   }
