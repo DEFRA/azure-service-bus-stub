@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "strict": false,
+    "allowJs": true,
+    "checkJs": true,
+    "module": "NodeNext",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true
+  },
+  "exclude": [
+    ".vite",
+    "coverage",
+    "node_modules",
+    "src/**/*.test.js",
+    "vitest.config.js"
+  ],
+  "include": ["**/*.cjs", "**/*.js", "**/*.d.ts", ".*.js"]
+}

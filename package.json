@@ -14,8 +14,9 @@
     "format": "prettier --write \"**/*.{cjs,js,json,md}\"",
     "format:check": "prettier --check \"**/*.{cjs,js,json,md}\"",
     "git:pre-commit-hook": "npm run security-audit && npm run format:check && npm run lint && npm test",
-    "lint": "npm run lint:eslint && npm run lint:knip",
+    "lint": "npm run lint:eslint && npm run lint:types && npm run lint:knip",
     "lint:eslint": "eslint --cache --cache-strategy content \"**/*.{cjs,js}\"",
+    "lint:types": "tsc --build tsconfig.json",
     "lint:knip": "knip",
     "lint:fix": "npm run lint:eslint -- --fix && npm run lint:knip -- --fix",
     "security-audit": "npm audit --audit-level=critical",
@@ -47,12 +48,16 @@
     "undici": "8.9.0"
   },
   "devDependencies": {
+    "@types/node": "24.13.3",
     "@vitest/coverage-v8": "4.1.10",
     "eslint": "9.39.5",
+    "eslint-plugin-jsdoc": "63.3.1",
     "husky": "9.1.7",
     "knip": "6.30.0",
     "neostandard": "0.13.0",
     "prettier": "3.9.6",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.65.0",
     "vitest": "4.1.10",
     "vitest-fetch-mock": "0.4.5"
   }

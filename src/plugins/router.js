@@ -1,12 +1,19 @@
 import { health } from '#/routes/health.js'
 import { payRequestConsumer } from '#/routes/consumer/pay-request.js'
 
+/**
+ * @satisfies {ServerRegisterPluginObject<void>}
+ */
 export const router = {
   plugin: {
     name: 'router',
-    register: (server) => {
+    register: async (server) => {
       server.route([health])
-      server.register([payRequestConsumer])
+      await server.register([payRequestConsumer])
     }
   }
 }
+
+/**
+ * @import { ServerRegisterPluginObject } from '@hapi/hapi'
+ */

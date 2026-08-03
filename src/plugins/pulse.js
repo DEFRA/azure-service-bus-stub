@@ -3,6 +3,9 @@ import { createLogger } from '#/common/helpers/logging/logger.js'
 
 const tenSeconds = 10 * 1000
 
+/**
+ * @satisfies {ServerRegisterPluginObject<{ logger: Logger; timeout: number }>}
+ */
 export const pulse = {
   plugin: hapiPulse,
   options: {
@@ -10,3 +13,8 @@ export const pulse = {
     timeout: tenSeconds
   }
 }
+
+/**
+ * @import { ServerRegisterPluginObject } from '@hapi/hapi'
+ * @import { Logger } from 'pino'
+ */

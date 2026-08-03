@@ -2,6 +2,10 @@ import { config } from '#/config.js'
 
 import { createServer } from '#/server.js'
 
+/**
+ * Start the Hapi server
+ * @returns {Promise<Server>}
+ */
 export async function startServer() {
   const server = await createServer()
   await server.start()
@@ -13,3 +17,7 @@ export async function startServer() {
 
   return server
 }
+
+/**
+ * @import { Server } from '@hapi/hapi'
+ */

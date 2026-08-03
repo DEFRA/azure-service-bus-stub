@@ -1,3 +1,6 @@
+/**
+ * @satisfies {ServerRegisterPluginObject<void>}
+ */
 export const payRequestConsumer = {
   plugin: {
     name: 'azureServiceBusConsumer',
@@ -22,3 +25,7 @@ export const payRequestConsumer = {
   },
   routes: { prefix: '/ffc-pay-request-dev' }
 }
+
+/**
+ * @import { ServerRegisterPluginObject } from '@hapi/hapi'
+ */
