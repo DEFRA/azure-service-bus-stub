@@ -7,6 +7,10 @@ import { failAction } from '#/common/helpers/fail-action.js'
 import { pulse } from '#/plugins/pulse.js'
 import { requestTracing } from '#/plugins/request-tracing.js'
 import { setupProxy } from '#/common/helpers/proxy/setup-proxy.js'
+import {
+  startServiceBusBroker,
+  stopServiceBusBroker
+} from '#/common/helpers/service-bus/service-bus-broker.js'
 import { metrics } from '@defra/cdp-metrics'
 
 /**
@@ -55,6 +59,11 @@ export async function createServer() {
     pulse,
     router
   ])
+
+  // The in-process Service Bus (AMQP) broker that grants-payment-service
+  // subscribes to via the @azure/service-bus SDK.
+  await startServiceBusBroker({ logger: server.logger })
+  server.events.on('stop', stopServiceBusBroker)
 
   return server
 }
