@@ -10,7 +10,7 @@ import { setupProxy } from '#/common/helpers/proxy/setup-proxy.js'
 import {
   startServiceBusBroker,
   stopServiceBusBroker
-} from '#/common/helpers/service-bus/service-bus-broker.js'
+} from '#/common/helpers/service-bus/service-bus-http-api.js'
 import { metrics } from '@defra/cdp-metrics'
 
 /**
@@ -60,9 +60,9 @@ export async function createServer() {
     router
   ])
 
-  // The in-process Service Bus (AMQP) broker that grants-payment-service
-  // subscribes to via the @azure/service-bus SDK.
-  await startServiceBusBroker({ logger: server.logger })
+  // The in-process Service Bus HTTP API that grants-payment-service
+  // polls for events via REST.
+  startServiceBusBroker({ logger: server.logger })
   server.events.on('stop', stopServiceBusBroker)
 
   return server

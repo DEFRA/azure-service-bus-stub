@@ -1,11 +1,11 @@
 import Hapi from '@hapi/hapi'
 import hapiPino from 'hapi-pino'
 
-import { publishToResponseTopic } from '#/common/helpers/service-bus/service-bus-broker.js'
+import { publishToResponseTopic } from '#/common/helpers/service-bus/service-bus-http-api.js'
 
 import { batchRejectedSubscription } from './batch-rejected.js'
 
-vi.mock('#/common/helpers/service-bus/service-bus-broker.js', () => ({
+vi.mock('#/common/helpers/service-bus/service-bus-http-api.js', () => ({
   publishToResponseTopic: vi.fn()
 }))
 

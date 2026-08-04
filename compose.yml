@@ -29,9 +29,6 @@ services:
       target: development
     ports:
       - '3001:3001'
-      # AMQP - the in-process Service Bus broker that grants-payment-service
-      # subscribes to via the @azure/service-bus SDK
-      - '5672:5672'
     links:
       - 'floci:floci'
     depends_on:

@@ -2,6 +2,16 @@ import hapiPino from 'hapi-pino'
 
 import { loggerOptions } from './logger-options.js'
 
+/**
+ * Per-route pino options read by the request logger.
+ * @typedef {object} PinoRoutePlugins
+ * @property {object} [pino] Per-route logging configuration
+ * @property {boolean} [pino.logHeaders] Include request headers in the log message
+ * @property {boolean} [pino.logPayload] Include the request body in the log message
+ * @property {boolean} [pino.logResponse] Include the response body in the log message
+ * @property {boolean} [pino.logRequestComplete] When false, suppress the response log for this route
+ */
+
 // Custom message function that includes payloads in the log message
 /**
  * @param {Request} request
@@ -11,7 +21,7 @@ import { loggerOptions } from './logger-options.js'
 const customRequestCompleteMessage = (request, responseTime) => {
   let message = `[response] ${request.method} ${request.raw.req.url} ${request.raw.res.statusCode} (${responseTime}ms)`
 
-  /** @type {{ pino?: { logHeaders?: boolean; logPayload?: boolean; logResponse?: boolean } } | undefined} */
+  /** @type {PinoRoutePlugins | undefined} */
   const routePlugins = request.route.settings.plugins
   const pinoOptions = routePlugins?.pino
   if (!pinoOptions) return message
@@ -53,12 +63,28 @@ const customRequestCompleteMessage = (request, responseTime) => {
   return message
 }
 
+// Suppress the response log for routes that opt out via their pino plugin
+// options, e.g. endpoints that are polled frequently.
+/**
+ * @param {Request} request
+ * @returns {boolean}
+ */
+const shouldLogRequestComplete = (request) => {
+  /** @type {PinoRoutePlugins | undefined} */
+  const routePlugins = request.route.settings.plugins
+  return routePlugins?.pino?.logRequestComplete !== false
+}
+
 /**
  * @satisfies {ServerRegisterPluginObject<Options>}
  */
 export const requestLogger = {
   plugin: hapiPino,
-  options: { ...loggerOptions, customRequestCompleteMessage }
+  options: {
+    ...loggerOptions,
+    customRequestCompleteMessage,
+    logRequestComplete: shouldLogRequestComplete
+  }
 }
 
 /**

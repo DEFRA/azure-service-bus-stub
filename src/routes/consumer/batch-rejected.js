@@ -1,6 +1,6 @@
 import crypto from 'node:crypto'
 
-import { publishToResponseTopic } from '#/common/helpers/service-bus/service-bus-broker.js'
+import { publishToResponseTopic } from '#/common/helpers/service-bus/service-bus-http-api.js'
 
 /**
  * Example BATCH_REJECTED event as published by the payment hub response topic.

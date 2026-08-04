@@ -89,18 +89,6 @@ export const config = convict({
     }
   },
   serviceBus: {
-    host: {
-      doc: 'The IP address the in-process Service Bus (AMQP) broker binds to',
-      format: 'ipaddress',
-      default: '0.0.0.0',
-      env: 'SERVICE_BUS_HOST'
-    },
-    amqpPort: {
-      doc: 'The AMQP port the in-process Service Bus broker listens on',
-      format: 'port',
-      default: 5672,
-      env: 'SERVICE_BUS_AMQP_PORT'
-    },
     topic: {
       doc: 'Azure Service Bus topic for payment hub responses (e.g. BATCH_REJECTED events)',
       format: String,
