@@ -56,7 +56,7 @@
     "knip": "6.33.0",
     "neostandard": "0.13.0",
     "prettier": "3.9.6",
-    "typescript": "6.0.3",
+    "typescript": "7.0.2",
     "typescript-eslint": "8.68.0",
     "vitest": "4.1.11",
     "vitest-fetch-mock": "0.4.5"
