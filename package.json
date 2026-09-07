@@ -51,7 +51,7 @@
     "@types/node": "24.13.3",
     "@vitest/coverage-v8": "4.1.11",
     "eslint": "9.39.5",
-    "eslint-plugin-jsdoc": "64.2.1",
+    "eslint-plugin-jsdoc": "64.3.2",
     "husky": "9.1.7",
     "knip": "6.32.2",
     "neostandard": "0.13.0",
