@@ -33,9 +33,9 @@
   "author": "Defra DDTS",
   "license": "OGL-UK-3.0",
   "dependencies": {
-    "@defra/cdp-metrics": "0.6.0",
-    "@defra/hapi-secure-context": "0.4.0",
-    "@defra/hapi-tracing": "1.30.0",
+    "@defra/cdp-metrics": "0.6.1",
+    "@defra/hapi-secure-context": "0.4.1",
+    "@defra/hapi-tracing": "1.30.1",
     "@elastic/ecs-pino-format": "1.5.0",
     "@hapi/hapi": "21.4.10",
     "convict": "6.2.5",
